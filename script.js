@@ -1,37 +1,32 @@
-const texts = [
-  "You can’t choose no!!",
+const noTexts = [
   "Please think again",
   "Are you sure?",
   "I will cry",
   "That’s not your choice"
 ];
 
-const images = [
-  "sad1.png",
-  "sad2.png",
-  "sad3.png",
-  "sad4.png"
+const noImages = [
+  "sad1.gif",
+  "sad2.gif",
+  "sad3.gif",
+  "sad4.gif"
 ];
 
-let count = 0;
+let index = 0;
 
-function noClick() {
-  if (count < texts.length) {
-    document.getElementById("text").innerText = texts[count];
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const text = document.getElementById("text");
+const image = document.getElementById("mainImage");
 
-    if (count < images.length) {
-      document.getElementById("mainImage").src = images[count];
-    }
-
-    count++;
+noBtn.addEventListener("click", () => {
+  if (index < noTexts.length) {
+    text.textContent = noTexts[index];
+    image.src = noImages[index];
+    index++;
   }
-}
+});
 
-function yesClick() {
-  document.body.innerHTML = 
-    <div style="text-align:center;">
-      <h1 style="color:#ff6f9f;">I knew it 💗</h1>
-      <p>You’re mine now.</p>
-    </div>
-  ;
-}
+yesBtn.addEventListener("click", () => {
+  text.textContent = "Yaaay 💗";
+});
