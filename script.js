@@ -21,20 +21,27 @@ const yesBtn = document.getElementById("yesBtn");
 const text = document.getElementById("text");
 const image = document.getElementById("mainImage");
 
-noBtn.addEventListener("click", () => {
-  
-  const currentIndex = Math.min(index, noImages.length - 1);
 
-  text.textContent = noTexts[currentIndex];
-  image.src = noImages[currentIndex];
+const preloadedImages = [];
+noImages.forEach(src => {
+  const img = new Image();
+  img.src = src;
+  preloadedImages.push(img);
+});
+
+noBtn.addEventListener("click", () => {
+  const i = index % noImages.length;
+
+  
+  image.src = preloadedImages[i].src;
+  text.textContent = noTexts[i];
 
  
   yesScale += 0.3;
   yesBtn.style.transform = `scale(${yesScale})`;
 
-  
-  noScale -= 0.15;
-  if (noScale < 0.3) noScale = 0.3;
+ 
+  noScale = Math.max(0.3, noScale - 0.15);
   noBtn.style.transform = `scale(${noScale})`;
 
   index++;
@@ -43,7 +50,5 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   text.textContent = "Yaaay 💗";
   image.src = "KURT.jpg";
-
-  
   noBtn.disabled = true;
 });
