@@ -13,6 +13,7 @@ const noImages = [
 ];
 
 let index = 0;
+let yesScale = 1;
 
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
@@ -23,10 +24,16 @@ noBtn.addEventListener("click", () => {
   if (index < noTexts.length) {
     text.textContent = noTexts[index];
     image.src = noImages[index];
+
+    
+    yesScale += 0.2;
+    yesBtn.style.transform = `scale(${yesScale})`;
+
     index++;
   }
 });
 
 yesBtn.addEventListener("click", () => {
   text.textContent = "Yaaay 💗";
+  image.src = "KURT.jpg"; 
 });
