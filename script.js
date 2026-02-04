@@ -22,25 +22,28 @@ const text = document.getElementById("text");
 const image = document.getElementById("mainImage");
 
 noBtn.addEventListener("click", () => {
-  if (index < noTexts.length) {
-    // تغيير النص والصورة
-    text.textContent = noTexts[index];
-    image.src = noImages[index];
+  
+  const currentIndex = Math.min(index, noImages.length - 1);
 
-    // Yes يكبر
-    yesScale += 0.3;
-    yesBtn.style.transform = `scale(${yesScale})`;
+  text.textContent = noTexts[currentIndex];
+  image.src = noImages[currentIndex];
 
-    // No يصغر
-    noScale -= 0.15;
-    if (noScale < 0.3) noScale = 0.3; // عشان ما يختفي مرة
-    noBtn.style.transform = `scale(${noScale})`;
+ 
+  yesScale += 0.3;
+  yesBtn.style.transform = `scale(${yesScale})`;
 
-    index++;
-  }
+  
+  noScale -= 0.15;
+  if (noScale < 0.3) noScale = 0.3;
+  noBtn.style.transform = `scale(${noScale})`;
+
+  index++;
 });
 
 yesBtn.addEventListener("click", () => {
   text.textContent = "Yaaay 💗";
   image.src = "KURT.jpg";
+
+  
+  noBtn.disabled = true;
 });
